@@ -9,7 +9,10 @@ import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration // 설정 정보. 애플리케이션의 구성 정보 담당.
 public class AppConfig {
     // Application의 실제 동작에 필요한 구현 객체를 생성한다.
 
@@ -28,19 +31,24 @@ public class AppConfig {
 
     // method명을 가져오는 순간 역할이 다 드러남.
 
+    // Spring Container에 다 등록됨
+    @Bean
     public MemberService memberService() {
         return new MemberServiceImpl(memberRepository());
     }
 
-    private MemberRepository memberRepository() {
+    @Bean
+    public MemberRepository memberRepository() {
         return new MemoryMemberRepository(); // 지금은 이걸 쓸 거야 근데 나중에 dbRepository로 바뀌면 이 코드만 바꾸면 됨
     }
 
+    @Bean
     public OrderService orderService() {
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
-    private DiscountPolicy discountPolicy() {
+    @Bean
+    public DiscountPolicy discountPolicy() {
        // return new FixDiscountPolicy();
         return new RateDiscountPolicy();
     }
