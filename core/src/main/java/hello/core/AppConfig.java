@@ -32,6 +32,9 @@ public class AppConfig {
     // method명을 가져오는 순간 역할이 다 드러남.
 
     // Spring Container에 다 등록됨
+    // 스프링 컨테이너는 @Configuration이 붙은 AppConfig를 설정 정보로 사용한다
+    // 여기에서 @Bean이라고 적힌 메서드를 모두 호출해서 반환된 객체를
+    // 스프링 컨테이너에 등록한다. 이렇게 스프링 컨테이너에 등록된 객체를 스프링 빈이라고 함
     @Bean
     public MemberService memberService() {
         return new MemberServiceImpl(memberRepository());
