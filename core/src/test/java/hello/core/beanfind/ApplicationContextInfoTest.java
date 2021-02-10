@@ -39,6 +39,8 @@ public class ApplicationContextInfoTest {
                 System.out.println("name = " + beanDefinitionName + " object = "
                         + bean);
             }
+            // ROLE_APPLICATION : 직접 등록한 애플리케이션 빈
+            // ROLE_INFRASTRUCTURE : 스프링이 내부에서 사용하는 빈
         }
     }
 }
