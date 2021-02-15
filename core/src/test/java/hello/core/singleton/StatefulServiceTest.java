@@ -16,18 +16,23 @@ public class StatefulServiceTest {
         StatefulService statefulService2 = ac.getBean(StatefulService.class);
 
         // ThreadA : A사용자 10000원 주문
-        statefulService1.order("userA", 10000);
+//        statefulService1.order("userA", 10000);
+        int userAPrice = statefulService1.order("userA", 10000);
+        int userBPrice = statefulService2.order("userB", 20000);
+
 
         // ThreadB : B사용자 20000원 주문
-       statefulService2.order("userB", 20000);
+//       statefulService2.order("userB", 20000);
 
        // ThreadA : A사용자가 주문 금액 조회
-        int price = statefulService1.getPrice();
-        System.out.println("price = " + price);
+//        int price = statefulService1.getPrice();
+//        System.out.println("price = " + price);
         // 20000원이 나옴
         // service1이든 2든 들어가면 같은 instance를 사용함
 
-        Assertions.assertThat(statefulService1.getPrice()).isEqualTo(20000);
+        System.out.println("price = " + userAPrice);
+
+//        Assertions.assertThat(statefulService1.getPrice()).isEqualTo(20000);
     }
 
     static class TestConfig{
