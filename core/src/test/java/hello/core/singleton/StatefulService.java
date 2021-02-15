@@ -7,6 +7,7 @@ public class StatefulService {
     public void order(String name, int price) {
         System.out.println("name = " + name + " price = " + price);
         this.price = price;
+
     }
 
     public int getPrice() {
