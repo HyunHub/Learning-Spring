@@ -25,7 +25,7 @@ public class StatefulServiceTest {
         int price = statefulService1.getPrice();
         System.out.println("price = " + price);
         // 20000원이 나옴
-        // service1이든 2든 들어가면 같은 instance를 사용
+        // service1이든 2든 들어가면 같은 instance를 사용함
 
         Assertions.assertThat(statefulService1.getPrice()).isEqualTo(20000);
     }
