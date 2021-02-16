@@ -35,6 +35,12 @@ public class AppConfig {
     // 스프링 컨테이너는 @Configuration이 붙은 AppConfig를 설정 정보로 사용한다
     // 여기에서 @Bean이라고 적힌 메서드를 모두 호출해서 반환된 객체를
     // 스프링 컨테이너에 등록한다. 이렇게 스프링 컨테이너에 등록된 객체를 스프링 빈이라고 함
+
+    // @Bean memberService -> new MemoryMemberRepository()
+    // @Bean orderService -> new MemoryMemberRepository()
+    // 두 번 호출,, singleton이 깨지는 것이 아닌가? - test 코드 돌림
+    //
+
     @Bean
     public MemberService memberService() {
         return new MemberServiceImpl(memberRepository());
