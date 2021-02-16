@@ -39,20 +39,37 @@ public class AppConfig {
     // @Bean memberService -> new MemoryMemberRepository()
     // @Bean orderService -> new MemoryMemberRepository()
     // 두 번 호출,, singleton이 깨지는 것이 아닌가? - test 코드 돌림
-    //
+
+
+    // call AppConfig.memberService
+    // call AppConfig.memberRepository
+    // call AppConfig.memberRepository
+    // call AppConfig.orderService
+    // call AppConfig.memberRepository
+    // 순서는 다를 수 있지만 call AppConfig.memberRepository 세 번 호출
+
+    // 하지만
+    // call AppConfig.memberService
+    // call AppConfig.memberRepository
+    // call AppConfig.orderService
+    // 이렇게만 호출됨
+
 
     @Bean
     public MemberService memberService() {
+        System.out.println("call AppConfig.memberService");
         return new MemberServiceImpl(memberRepository());
     }
 
     @Bean
     public MemberRepository memberRepository() {
+        System.out.println("call AppConfig.memberRepository");
         return new MemoryMemberRepository(); // 지금은 이걸 쓸 거야 근데 나중에 dbRepository로 바뀌면 이 코드만 바꾸면 됨
     }
 
     @Bean
     public OrderService orderService() {
+        System.out.println("call AppConfig.orderService");
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
 
