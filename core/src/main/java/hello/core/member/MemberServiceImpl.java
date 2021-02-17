@@ -1,5 +1,9 @@
 package hello.core.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class MemberServiceImpl implements MemberService{
 
     /*private final MemberRepository memberRepository =
@@ -11,7 +15,8 @@ public class MemberServiceImpl implements MemberService{
 
     // 생성자를 통해서 이 MemberRepository에 구현체가 뭐가 들어갈지를 config
     // 이렇게 되면 MemeberServiceImpl에는 MemberRepository라는 interface만 있음. 추상화에만 의존. DIP를 지킴.
-    //
+
+    @Autowired // memoryMemberRepository에 맞는 Spring Bean을 주입시켜 줌
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
     }
