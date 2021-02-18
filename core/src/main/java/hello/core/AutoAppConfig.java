@@ -6,7 +6,12 @@ import org.springframework.context.annotation.FilterType;
 
 @Configuration
 @ComponentScan( // @Component 붙은 거 자동으로 찾아가서 Spring Bean으로 등록시켜 줌
-        excludeFilters = @ComponentScan.Filter(type = FilterType.ANNOTATION,
+        basePackages = "hello.core.member", // 탐색할 패키지 시작 위치 지정해줄 수 있음
+        // 지정해주지 않으면 default인데
+        // ComponentScan을 붙인 이 클래스의 패키지 hello.core 여기에서부터 시작해서
+        // 하위까지 다 뒤짐
+
+        excludeFilters= @ComponentScan.Filter(type = FilterType.ANNOTATION,
         classes = Configuration.class)
         // 자동 등록할 것 중 뺄 것을 지정해 줌
         // 앞에 우리가 설정해뒀던 AppConfig도 등록이 되니까 빼줌
