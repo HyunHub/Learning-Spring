@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 //@Qualifier("mainDiscountPolicy") // 이름 부여
 //@Primary // 여러개의 Bean 중에 우선권 부여
-@MainDiscountPolicy // 만든 annotation 넣기
+@MainDiscountPolicy // 만든 Annotation 넣기
 public class RateDiscountPolicy implements DiscountPolicy{
 
     private int discountPercent = 10;
