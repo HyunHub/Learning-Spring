@@ -30,10 +30,13 @@ public class OrderServiceImpl implements OrderService{
 
     //AppConfig에서 해주기 위해서. final은 값을 할당받든 생성자를 만들든 해야 함
     //구체적인 class에 대해서 전혀모르고 interface에만 의존함. DIP 지킴.
+    // final - 생성될 때 정해지면 안 바뀜. 생성자 또는 초기값 넣어주는 거 아니면 값 못 바꿈.
+    // 생성자 만들 때 실수로 this. 누락할 수 있음. test 짤 때까지는 문제 없는데 실행하면 문제
+    // final 넣으면 오류가 나서 알 수 있음.
     public final MemberRepository memberRepository;
     public final DiscountPolicy discountPolicy;
 
-    @Autowired
+    @Autowired // 생성자 하나면 @Autowired 생략 가능
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
