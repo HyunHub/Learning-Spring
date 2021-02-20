@@ -69,6 +69,12 @@ public class OrderServiceImpl implements OrderService{
         return new Order(memberId, itemName, itemPrice, discountPrice);
     }
 
+    @Autowired
+    public DiscountPolicy setDiscountPolicy(@MainDiscountPolicy DiscountPolicy
+                                                    discountPolicy) {
+        return discountPolicy;
+    }
+
     // test 용도
     public MemberRepository getMemberRepository() {
         return memberRepository;
