@@ -3,6 +3,9 @@ package hello.core.lifecycle;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 // implements InitializingBean, DisposableBean
 public class NetworkClient  {
 
@@ -45,13 +48,16 @@ public class NetworkClient  {
         disconnect();
     }*/
 
+    // 외부 라이브러리에는 적용을 못해서
+    //@Bean(initMethod = "init", destroyMethod = "close")을 사용하면 됨
+    @PostConstruct
     public void init() {
         System.out.println("NetworkClient.init");
         connect();
         call("초기화 연결 메세지");
     }
 
-
+    @PreDestroy
     public void close() {
         System.out.println("NetworkClient.close");
         disconnect();
