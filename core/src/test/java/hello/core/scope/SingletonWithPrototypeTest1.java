@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Scope;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.inject.Provider;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -48,8 +49,12 @@ public class SingletonWithPrototypeTest1 {
         // 의존관계 주입 받기. 생성 시점에 주입. 계속 같은 것을 씀
 //        private final PrototypeBean prototypeBean;
 
+/*        // Dependency Lookup 정도의 기능만 함. DL
         @Autowired
-        private ObjectProvider<PrototypeBean> prototypeBeanProvider;
+        private ObjectProvider<PrototypeBean> prototypeBeanProvider;*/
+
+        @Autowired
+        private Provider<PrototypeBean> prototypeBeanProvider;
 
 /*        @Autowired // 생성자 하나니까 생략 가능
         public ClientBean(PrototypeBean prototypeBean) {
@@ -59,7 +64,8 @@ public class SingletonWithPrototypeTest1 {
         public int logic() {
 
             // getObject() 호출하면 찾아서 반환해줌
-            PrototypeBean prototypeBean = prototypeBeanProvider.getObject();
+//            PrototypeBean prototypeBean = prototypeBeanProvider.getObject();
+            PrototypeBean prototypeBean = prototypeBeanProvider.get();
             prototypeBean.addCount();
 
 /*            int count = prototypeBean.getCount();
