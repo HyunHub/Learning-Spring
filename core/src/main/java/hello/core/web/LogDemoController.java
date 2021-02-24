@@ -17,7 +17,9 @@ public class LogDemoController {
 //    private final MyLogger myLogger; // 의존관계 주입
 
     // MyLogger를 주입받는 것이 아니라 DL 할 수 있는 게 주입됨.
-    private final ObjectProvider<MyLogger> myLoggerProvider;
+//    private final ObjectProvider<MyLogger> myLoggerProvider;
+
+    private final MyLogger myLogger;
 
     @RequestMapping("log-demo")
     @ResponseBody
@@ -28,7 +30,7 @@ public class LogDemoController {
         // 고객이 어떤 URL로 요청했는지 알 수 있음
        String requestURL = request.getRequestURL().toString();
 
-        MyLogger myLogger = myLoggerProvider.getObject();
+//        MyLogger myLogger = myLoggerProvider.getObject();
 
         myLogger.setRequestURL(requestURL);
 
